@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.touchlab.skie)
 }
 
 kotlin {
@@ -24,7 +26,7 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
-        ios.deploymentTarget = "16.0"
+        ios.deploymentTarget = "17.0"
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
@@ -36,6 +38,10 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.ktor.client.core)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.logging)
 
             api(libs.koin.core)
 
@@ -53,9 +59,15 @@ kotlin {
 
             implementation(libs.koin.android)
         }
-        iosMain.dependencies {
+        nativeMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
+    }
+}
+
+skie {
+    features {
+        enableSwiftUIObservingPreview = true
     }
 }
 

@@ -42,9 +42,12 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation.compose)
     debugImplementation(libs.compose.ui.tooling)
 
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.room.runtime.android)
     implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 }

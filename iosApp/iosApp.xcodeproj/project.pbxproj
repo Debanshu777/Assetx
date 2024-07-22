@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,11 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		96AE5B5B6FF2041889E25B18 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507AA6C987C2883AB917C760 /* Pods_iosApp.framework */; };
+		D43EC3EA2C4A749800E8CE5A /* StockExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43EC3E92C4A749800E8CE5A /* StockExploreView.swift */; };
+		D43EC3EE2C4A87C400E8CE5A /* StockScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43EC3ED2C4A87C400E8CE5A /* StockScreen.swift */; };
+		D43EC3F22C4A884100E8CE5A /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43EC3F12C4A884100E8CE5A /* Tab.swift */; };
+		D43EC3F62C4A8E2300E8CE5A /* StockHoldingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43EC3F52C4A8E2300E8CE5A /* StockHoldingView.swift */; };
+		D4E91BA72C44F5FD00EABB48 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91BA62C44F5FD00EABB48 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A522812BD45EB4D36255F75E /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
+		D43EC3E92C4A749800E8CE5A /* StockExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockExploreView.swift; sourceTree = "<group>"; };
+		D43EC3ED2C4A87C400E8CE5A /* StockScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockScreen.swift; sourceTree = "<group>"; };
+		D43EC3F12C4A884100E8CE5A /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		D43EC3F52C4A8E2300E8CE5A /* StockHoldingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockHoldingView.swift; sourceTree = "<group>"; };
+		D4E91BA62C44F5FD00EABB48 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +62,6 @@
 				0AFC6C01CBBB6540FA85FA89 /* Pods-iosApp.debug.xcconfig */,
 				A522812BD45EB4D36255F75E /* Pods-iosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -77,13 +86,58 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				D43EC3E62C4A718400E8CE5A /* Views */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
-				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
 			path = iosApp;
+			sourceTree = "<group>";
+		};
+		D43EC3E62C4A718400E8CE5A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D43EC3EF2C4A882600E8CE5A /* common */,
+				D43EC3E82C4A745C00E8CE5A /* StockScreen */,
+				D43EC3E72C4A72EB00E8CE5A /* HomeSceen */,
+				7555FF82242A565900829871 /* ContentView.swift */,
+				2152FB032600AC8F00CF470E /* iOSApp.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D43EC3E72C4A72EB00E8CE5A /* HomeSceen */ = {
+			isa = PBXGroup;
+			children = (
+				D4E91BA62C44F5FD00EABB48 /* HomeView.swift */,
+			);
+			path = HomeSceen;
+			sourceTree = "<group>";
+		};
+		D43EC3E82C4A745C00E8CE5A /* StockScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D43EC3E92C4A749800E8CE5A /* StockExploreView.swift */,
+				D43EC3ED2C4A87C400E8CE5A /* StockScreen.swift */,
+				D43EC3F52C4A8E2300E8CE5A /* StockHoldingView.swift */,
+			);
+			path = StockScreen;
+			sourceTree = "<group>";
+		};
+		D43EC3EF2C4A882600E8CE5A /* common */ = {
+			isa = PBXGroup;
+			children = (
+				D43EC3F02C4A883200E8CE5A /* model */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		D43EC3F02C4A883200E8CE5A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				D43EC3F12C4A884100E8CE5A /* Tab.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		E04AE9278C362C803DEDB744 /* Frameworks */ = {
@@ -121,8 +175,9 @@
 		7555FF73242A565900829871 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
 					7555FF7A242A565900829871 = {
@@ -190,8 +245,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4E91BA72C44F5FD00EABB48 /* HomeView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				D43EC3F62C4A8E2300E8CE5A /* StockHoldingView.swift in Sources */,
+				D43EC3EE2C4A87C400E8CE5A /* StockScreen.swift in Sources */,
+				D43EC3F22C4A884100E8CE5A /* Tab.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				D43EC3EA2C4A749800E8CE5A /* StockExploreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -304,7 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -323,7 +383,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,7 +404,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
