@@ -13,6 +13,7 @@ struct DynamicTapNavigationOrganism: View {
     @Environment(\.colorScheme) private var scheme
     var onTapChangeCallback : (Int) -> ()
     var tabs: [String]
+    var tabIcons: [String]?
     var animation: Namespace.ID
     
     var body: some View {
@@ -21,6 +22,7 @@ struct DynamicTapNavigationOrganism: View {
                 ForEach(tabs.indices, id: \.self) { index in
                     TabButton(
                         tab: tabs[index],
+                        tabIcon: tabIcons?[index],
                         isActive: activeTab == index,
                         scheme: scheme,
                         animation: animation,
@@ -41,6 +43,7 @@ struct DynamicTapNavigationOrganism: View {
 
 struct TabButton: View {
     var tab: String
+    var tabIcon: String?
     var isActive: Bool
     var scheme: ColorScheme
     var animation: Namespace.ID
@@ -48,23 +51,29 @@ struct TabButton: View {
     
     var body: some View {
         Button(action: action) {
-            Text(tab)
-                .font(.callout)
-                .foregroundStyle(isActive ? (scheme == .dark ? .black : .white) : Color.primary)
-                .padding(.vertical, 5)
-                .padding(.horizontal, 10)
-                .background {
-                    if isActive {
-                        Capsule()
-                            .fill(Color.primary)
-                            .matchedGeometryEffect(id: "ACTIVETAB", in: animation)
-                    } else {
-                        Capsule()
-                            .fill(Color(UIColor.systemBackground))
-                    }
+            HStack{
+                if(tabIcon != nil){
+                    SVGImageView(url: URL(string: tabIcon!))
+                        .frame(width: 15, height: 15)
                 }
+                Text(tab)
+                    .font(.callout)
+            }
         }
         .buttonStyle(.plain)
+        .foregroundStyle(isActive ? (scheme == .dark ? .black : .white) : Color.primary)
+        .padding(.vertical, 5)
+        .padding(.horizontal, 10)
+        .background {
+            if isActive {
+                Capsule()
+                    .fill(Color.primary)
+                    .matchedGeometryEffect(id: "ACTIVETAB", in: animation)
+            } else {
+                Capsule()
+                    .fill(Color(UIColor.systemBackground))
+            }
+        }
     }
 }
 

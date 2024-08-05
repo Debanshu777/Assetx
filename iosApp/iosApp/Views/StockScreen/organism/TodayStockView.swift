@@ -37,6 +37,7 @@ struct TodayStockView: View {
                     setStockType(tabsList[index].1)
                 },
                 tabs: tabsList.map{ $0.0.name },
+                tabIcons: tabsList.map{ $0.0.iconUrl },
                 animation: animation
             )
             
