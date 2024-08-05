@@ -1,8 +1,9 @@
 [versions]
-agp = "8.6.0-alpha08"
+agp = "8.7.0-alpha03"
 kotlin = "2.0.0"
 compose = "1.6.8"
 compose-material3 = "1.2.1"
+icons-extended = "1.7.0-beta05"
 androidx-activityCompose = "1.9.0"
 
 kermit = "2.0.4"
@@ -18,6 +19,7 @@ kotlinx-serialization = "1.7.1"
 serialization-plugin = "2.0.0"
 skie = "0.8.2"
 navigationCompose = "2.7.7"
+coil = "2.7.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -27,6 +29,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "icons-extended" }
 
 #logger
 kermit-logger = { module = "co.touchlab:kermit", version.ref = "kermit" }
@@ -56,6 +59,9 @@ androidx-room-runtime = { group = "androidx.room", name = "room-runtime", versio
 androidx-room-runtime-android = { group = "androidx.room", name = "room-runtime-android", version.ref = "androidx-room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+#coil-kt
+coil = {module ="io.coil-kt:coil-compose",version.ref ="coil"}
+coil-svg = {module ="io.coil-kt:coil-svg",version.ref ="coil"}
 
 
 [plugins]

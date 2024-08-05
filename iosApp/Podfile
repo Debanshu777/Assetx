@@ -2,4 +2,5 @@ target 'iosApp' do
   use_frameworks!
   platform :ios, '17.0'
   pod 'shared', :path => '../shared'
+  pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '3.x'
 end

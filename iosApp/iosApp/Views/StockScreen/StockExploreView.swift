@@ -12,21 +12,18 @@ import shared
 struct StockExploreView: View {
     var viewModel = KoinHelper().getAppViewModel()
     @State var uiState: DataState = DataStateUninitialized()
+    @State var indicesList: DataState = DataStateUninitialized()
     var body: some View {
         ScrollView(.vertical) {
             LazyVStack{
-                switch(uiState){
-                case is DataStateLoading:
-                    ProgressView().padding()
-                case let successState as DataStateSuccess:
-                    Text(successState.data.description)
-                case is DataStateError:
-                    Text("error")
-                default:
-                    Text("error")
-                }
+                Spacer().frame(height: 20)
+                GridIndexView(indicesList: $indicesList)
+                    .collect(flow: viewModel.indicesList, into: $indicesList)
+                Spacer().frame(height: 40)
+                TodayStockView(universeList: $uiState) { type in
+                    viewModel.setType(type: type)
+                }.collect(flow: viewModel.universeDataList, into: $uiState)
             }
-            .collect(flow: viewModel.universeDataList, into: $uiState)
         }
     }
 }

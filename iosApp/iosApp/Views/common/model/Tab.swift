@@ -12,8 +12,3 @@ enum Tab:String,CaseIterable{
     case explore = "Explore"
     case holdings = "Holdings"
 }
-
-enum Screen:String,CaseIterable{
-    case stock = "Stock"
-    case home = "Home"
-}

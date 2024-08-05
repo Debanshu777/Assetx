@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Stock(
     @SerialName("change")
-    val change: Double,
+    val change: Double = 0.0,
     @SerialName("marketCap")
     val marketCap: String,
     @SerialName("name")

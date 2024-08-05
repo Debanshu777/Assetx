@@ -3,6 +3,8 @@ package com.debanshudatta.fintrack.data.repository
 import com.debanshudatta.fintrack.data.domain.Result
 import com.debanshudatta.fintrack.data.domain.error.DataError
 import com.debanshudatta.fintrack.data.domain.model.Data
+import com.debanshudatta.fintrack.data.domain.model.Indices
+import com.debanshudatta.fintrack.data.domain.model.IndicesResponse
 import com.debanshudatta.fintrack.data.domain.model.Response
 import com.debanshudatta.fintrack.data.networkClient
 import com.debanshudatta.fintrack.utils.Constants
@@ -40,4 +42,29 @@ internal class RemoteDataRepository {
             else -> Result.Error(DataError.Network.UNKNOWN)
         }
     }
+
+    suspend fun getIndexHomePage():Result<List<Indices>, DataError>{
+        val response = try {
+            networkClient.get(
+                Constants.AnalyzeBaseUrl + Constants.HomePageIndicesPath
+            )
+        }catch (ex: UnresolvedAddressException) {
+            return Result.Error(DataError.Network.NO_INTERNET)
+        }catch (ex: SerializationException) {
+            return Result.Error(DataError.Network.SERIALIZATION)
+        }
+        return when(response.status.value) {
+            in 200..299 -> {
+                val apiResult = response.body<IndicesResponse>()
+                Result.Success(apiResult.data)
+            }
+            401 -> Result.Error(DataError.Network.UNAUTHORIZED)
+            409 -> Result.Error(DataError.Network.CONFLICT)
+            408 -> Result.Error(DataError.Network.REQUEST_TIMEOUT)
+            413 -> Result.Error(DataError.Network.PAYLOAD_TOO_LARGE)
+            in 500..599 -> Result.Error(DataError.Network.SERVER_ERROR)
+            else -> Result.Error(DataError.Network.UNKNOWN)
+        }
+    }
+
 }

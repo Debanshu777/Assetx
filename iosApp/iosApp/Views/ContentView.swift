@@ -2,20 +2,23 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-    @State private var searchText:String = ""
-    @State private var activeScreen: Screen = .stock
+    @State private var searchText: String = ""
+    @State private var activeScreen: Int = 0
+    let screens: [Screen] = [
+        Screen(name: "Stock", iconSystemName: "chart.bar",screen: AnyView(StockScreen())),
+        Screen(name: "Home", iconSystemName: "house",screen: AnyView(HomeView()))
+    ]
+    
 	var body: some View {
         VStack{
-            ExpandableNavigationBar(activeScreen.rawValue)
+            ExpandableNavigationBar(screens[activeScreen].name)
             TabView(selection: $activeScreen) {
-                StockScreen().tabItem {
-                    Image(systemName: "chart.bar")
-                    Text("Stock")
-                }.tag(Screen.stock)
-                HomeView().tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }.tag(Screen.home)
+                ForEach(screens.indices, id: \.self) { index in
+                    screens[index].screen.tabItem {
+                        Image(systemName: screens[index].iconSystemName)
+                        Text(screens[index].name)
+                    }.tag(index)
+                }
             }
         }
 	}

@@ -1,35 +1,43 @@
 package com.debanshudatta.fintrack.android.views.stockScreen
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.debanshudatta.fintrack.android.views.stockScreen.organism.GridIndicesView
+import com.debanshudatta.fintrack.android.views.stockScreen.organism.TodayStockView
 import com.debanshudatta.fintrack.data.AppViewModel
-import com.debanshudatta.fintrack.data.DataState
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun StockExploreView() {
     val viewModel: AppViewModel = koinViewModel()
-    val universeList = viewModel.universeDataList.collectAsState()
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+    val universeState = viewModel.universeDataList.collectAsState()
+    val indicesState = viewModel.indicesList.collectAsState()
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
     ) {
-        when (universeList.value) {
-            is DataState.Error -> Text("Error")
-            DataState.Loading -> CircularProgressIndicator()
-            is DataState.Success -> Column {
-                Button(onClick = { viewModel.stopPolling() }) { Text("Stop") }
-                Text(universeList.value.toString())
+        item {
+            Spacer(modifier = Modifier.height(20.dp))
+        }
+        item {
+            GridIndicesView(indicesState)
+        }
+        item {
+            Spacer(modifier = Modifier.height(40.dp))
+        }
+        item {
+            TodayStockView(universeState) { tab ->
+                viewModel.setType(tab)
             }
-            DataState.Uninitialized -> CircularProgressIndicator()
+        }
+        item {
+            Spacer(modifier = Modifier.height(100.dp))
         }
     }
+
 }

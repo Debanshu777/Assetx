@@ -16,6 +16,16 @@
 		D43EC3EE2C4A87C400E8CE5A /* StockScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43EC3ED2C4A87C400E8CE5A /* StockScreen.swift */; };
 		D43EC3F22C4A884100E8CE5A /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43EC3F12C4A884100E8CE5A /* Tab.swift */; };
 		D43EC3F62C4A8E2300E8CE5A /* StockHoldingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43EC3F52C4A8E2300E8CE5A /* StockHoldingView.swift */; };
+		D45D6FA92C56D372002E63F3 /* DynamicTapNavigationOrganism.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45D6FA82C56D372002E63F3 /* DynamicTapNavigationOrganism.swift */; };
+		D45D6FAB2C56D5D0002E63F3 /* ChipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45D6FAA2C56D5CF002E63F3 /* ChipItem.swift */; };
+		D45D6FAD2C57B227002E63F3 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45D6FAC2C57B227002E63F3 /* Screen.swift */; };
+		D46072E42C5A8B6500A30328 /* SVGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46072E32C5A8B6500A30328 /* SVGImage.swift */; };
+		D46072E72C5A911800A30328 /* Precision.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46072E62C5A911800A30328 /* Precision.swift */; };
+		D4E689F42C6134DE00BCE792 /* PerformanceChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E689F32C6134DE00BCE792 /* PerformanceChart.swift */; };
+		D4E689F72C61508300BCE792 /* IndicesListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E689F62C61508300BCE792 /* IndicesListItem.swift */; };
+		D4E689F92C61647400BCE792 /* StockListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E689F82C61647400BCE792 /* StockListItem.swift */; };
+		D4E689FB2C6164AC00BCE792 /* GridIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E689FA2C6164AC00BCE792 /* GridIndexView.swift */; };
+		D4E689FD2C6164DD00BCE792 /* TodayStockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E689FC2C6164DD00BCE792 /* TodayStockView.swift */; };
 		D4E91BA72C44F5FD00EABB48 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91BA62C44F5FD00EABB48 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +43,16 @@
 		D43EC3ED2C4A87C400E8CE5A /* StockScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockScreen.swift; sourceTree = "<group>"; };
 		D43EC3F12C4A884100E8CE5A /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		D43EC3F52C4A8E2300E8CE5A /* StockHoldingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockHoldingView.swift; sourceTree = "<group>"; };
+		D45D6FA82C56D372002E63F3 /* DynamicTapNavigationOrganism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTapNavigationOrganism.swift; sourceTree = "<group>"; };
+		D45D6FAA2C56D5CF002E63F3 /* ChipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipItem.swift; sourceTree = "<group>"; };
+		D45D6FAC2C57B227002E63F3 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		D46072E32C5A8B6500A30328 /* SVGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImage.swift; sourceTree = "<group>"; };
+		D46072E62C5A911800A30328 /* Precision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Precision.swift; sourceTree = "<group>"; };
+		D4E689F32C6134DE00BCE792 /* PerformanceChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceChart.swift; sourceTree = "<group>"; };
+		D4E689F62C61508300BCE792 /* IndicesListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicesListItem.swift; sourceTree = "<group>"; };
+		D4E689F82C61647400BCE792 /* StockListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListItem.swift; sourceTree = "<group>"; };
+		D4E689FA2C6164AC00BCE792 /* GridIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridIndexView.swift; sourceTree = "<group>"; };
+		D4E689FC2C6164DD00BCE792 /* TodayStockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStockView.swift; sourceTree = "<group>"; };
 		D4E91BA62C44F5FD00EABB48 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +137,8 @@
 		D43EC3E82C4A745C00E8CE5A /* StockScreen */ = {
 			isa = PBXGroup;
 			children = (
+				D4E689F52C61503B00BCE792 /* molecule */,
+				D45D6FA52C54E1A2002E63F3 /* organism */,
 				D43EC3E92C4A749800E8CE5A /* StockExploreView.swift */,
 				D43EC3ED2C4A87C400E8CE5A /* StockScreen.swift */,
 				D43EC3F52C4A8E2300E8CE5A /* StockHoldingView.swift */,
@@ -127,6 +149,8 @@
 		D43EC3EF2C4A882600E8CE5A /* common */ = {
 			isa = PBXGroup;
 			children = (
+				D46072E52C5A90E000A30328 /* extension */,
+				D46072E22C5A8B4900A30328 /* organism */,
 				D43EC3F02C4A883200E8CE5A /* model */,
 			);
 			path = common;
@@ -136,8 +160,46 @@
 			isa = PBXGroup;
 			children = (
 				D43EC3F12C4A884100E8CE5A /* Tab.swift */,
+				D45D6FAA2C56D5CF002E63F3 /* ChipItem.swift */,
+				D45D6FAC2C57B227002E63F3 /* Screen.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		D45D6FA52C54E1A2002E63F3 /* organism */ = {
+			isa = PBXGroup;
+			children = (
+				D4E689F32C6134DE00BCE792 /* PerformanceChart.swift */,
+				D4E689FA2C6164AC00BCE792 /* GridIndexView.swift */,
+				D4E689FC2C6164DD00BCE792 /* TodayStockView.swift */,
+			);
+			path = organism;
+			sourceTree = "<group>";
+		};
+		D46072E22C5A8B4900A30328 /* organism */ = {
+			isa = PBXGroup;
+			children = (
+				D45D6FA82C56D372002E63F3 /* DynamicTapNavigationOrganism.swift */,
+				D46072E32C5A8B6500A30328 /* SVGImage.swift */,
+			);
+			path = organism;
+			sourceTree = "<group>";
+		};
+		D46072E52C5A90E000A30328 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				D46072E62C5A911800A30328 /* Precision.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		D4E689F52C61503B00BCE792 /* molecule */ = {
+			isa = PBXGroup;
+			children = (
+				D4E689F82C61647400BCE792 /* StockListItem.swift */,
+				D4E689F62C61508300BCE792 /* IndicesListItem.swift */,
+			);
+			path = molecule;
 			sourceTree = "<group>";
 		};
 		E04AE9278C362C803DEDB744 /* Frameworks */ = {
@@ -159,6 +221,7 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				6797E0076819CCFE335A2C02 /* Frameworks */,
+				A08934AEE7AD343AD484D749 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,6 +279,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		A08934AEE7AD343AD484D749 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E30FEDBB6628FE1548F10EE7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,12 +325,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D46072E72C5A911800A30328 /* Precision.swift in Sources */,
+				D45D6FAB2C56D5D0002E63F3 /* ChipItem.swift in Sources */,
+				D4E689F42C6134DE00BCE792 /* PerformanceChart.swift in Sources */,
 				D4E91BA72C44F5FD00EABB48 /* HomeView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				D46072E42C5A8B6500A30328 /* SVGImage.swift in Sources */,
 				D43EC3F62C4A8E2300E8CE5A /* StockHoldingView.swift in Sources */,
+				D4E689FB2C6164AC00BCE792 /* GridIndexView.swift in Sources */,
+				D45D6FA92C56D372002E63F3 /* DynamicTapNavigationOrganism.swift in Sources */,
+				D4E689FD2C6164DD00BCE792 /* TodayStockView.swift in Sources */,
+				D45D6FAD2C57B227002E63F3 /* Screen.swift in Sources */,
 				D43EC3EE2C4A87C400E8CE5A /* StockScreen.swift in Sources */,
 				D43EC3F22C4A884100E8CE5A /* Tab.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				D4E689F92C61647400BCE792 /* StockListItem.swift in Sources */,
+				D4E689F72C61508300BCE792 /* IndicesListItem.swift in Sources */,
 				D43EC3EA2C4A749800E8CE5A /* StockExploreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

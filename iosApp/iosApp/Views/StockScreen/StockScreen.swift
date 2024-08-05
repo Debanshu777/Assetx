@@ -10,52 +10,26 @@ import SwiftUI
 import shared
 
 struct StockScreen: View {
-    @State private var activeTab: Tab = .explore
+    @State private var activeTab: Int = 0
     @Environment(\.colorScheme) private var scheme
+    let tabs: [(String,AnyView)] = [
+        ("Explore",AnyView(StockExploreView())),
+        ("Holdings",AnyView(StockHoldingView())),
+    ]
     @Namespace private var animation
     
     var body: some View {
         VStack{
-            ScrollView(.horizontal){
-                HStack(spacing: 12){
-                    ForEach(Tab.allCases,id: \.rawValue){ tab in
-                        Button(action:{
-                            withAnimation(.easeInOut){
-                                activeTab = tab
-                            }
-                        }){
-                            Text(tab.rawValue)
-                                .font(.callout)
-                                .foregroundStyle(activeTab == tab ? (scheme == .dark ? .black: .white)
-                                                 : Color.primary)
-                                .padding(.vertical,5)
-                                .padding(.horizontal, 10)
-                                .background{
-                                    if activeTab == tab{
-                                        Capsule()
-                                            .fill(Color.primary)
-                                            .matchedGeometryEffect(id: "ACTIVETAB", in: animation)
-                                    }else{
-                                        Capsule()
-                                            .fill(.background)
-                                    }
-                                }
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-            }.frame(height: 50)
-            
-            
+            DynamicTapNavigationOrganism(
+                activeTab: $activeTab,
+                onTapChangeCallback: {index in print(index)},
+                tabs: tabs.map{ $0.0 },
+                animation: animation
+            )
             TabView(selection: $activeTab){
-                StockExploreView().tabItem{
-                    Text("Explore")
-                }.tag(Tab.explore)
-                
-                StockHoldingView().tabItem{
-                    Text("Holdings")
-                }.tag(Tab.holdings)
-                
+                ForEach(tabs.indices, id: \.self) { index in
+                    tabs[index].1.tag(index)
+                }
             }.tabViewStyle(.page(indexDisplayMode: .never))
         }
     }

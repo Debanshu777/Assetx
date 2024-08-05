@@ -1,8 +1,11 @@
 package com.debanshudatta.fintrack.android.views.common.model
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AreaChart
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.SsidChart
+import androidx.compose.material.icons.outlined.AreaChart
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.runtime.Composable
@@ -21,18 +24,15 @@ data class TabBarItem(
 
 val stockTab = TabBarItem(
     "Stock",
-    selectedIcon = Icons.Filled.PlayArrow,
-    notSelectedIcon = Icons.Outlined.PlayArrow,
-) {
-    StockScreen()
-}
+    selectedIcon = Icons.Filled.AreaChart,
+    notSelectedIcon = Icons.Outlined.AreaChart,
+) { StockScreen() }
 
 val homeTab = TabBarItem(
     "Home",
     selectedIcon = Icons.Filled.Home,
     notSelectedIcon = Icons.Outlined.Home,
-    screen = { HomeScreen() }
-)
+) { HomeScreen() }
 
 val bottomNavigationItems = listOf(
     stockTab,
