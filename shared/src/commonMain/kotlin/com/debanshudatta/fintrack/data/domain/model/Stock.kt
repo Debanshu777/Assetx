@@ -1,9 +1,12 @@
 package com.debanshudatta.fintrack.data.domain.model
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@Entity
 @Serializable
 data class Stock(
     @SerialName("change")
@@ -16,6 +19,7 @@ data class Stock(
     val price: Double,
     @SerialName("sector")
     val sector: String,
+    @PrimaryKey
     @SerialName("sid")
     val sid: String,
     @SerialName("slug")
