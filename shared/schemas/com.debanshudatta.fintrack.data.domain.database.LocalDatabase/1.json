@@ -1,0 +1,155 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "cdac042205495726d3fc9946f9837209",
+    "entities": [
+      {
+        "tableName": "Stock",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sid` TEXT NOT NULL, `change` REAL NOT NULL, `marketCap` TEXT NOT NULL, `name` TEXT NOT NULL, `price` REAL NOT NULL, `sector` TEXT NOT NULL, `slug` TEXT NOT NULL, `ticker` TEXT NOT NULL, `inUserPortfolio` INTEGER NOT NULL, PRIMARY KEY(`sid`))",
+        "fields": [
+          {
+            "fieldPath": "sid",
+            "columnName": "sid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "change",
+            "columnName": "change",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "marketCap",
+            "columnName": "marketCap",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sector",
+            "columnName": "sector",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slug",
+            "columnName": "slug",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ticker",
+            "columnName": "ticker",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "inUserPortfolio",
+            "columnName": "inUserPortfolio",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "sid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_Stock_sid_ticker",
+            "unique": false,
+            "columnNames": [
+              "sid",
+              "ticker"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Stock_sid_ticker` ON `${TABLE_NAME}` (`sid`, `ticker`)"
+          }
+        ]
+      },
+      {
+        "tableName": "Indices",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sid` TEXT NOT NULL, `chartRange` TEXT NOT NULL, `lastClosePrice` REAL NOT NULL, `name` TEXT, `points` TEXT NOT NULL, `type` TEXT NOT NULL, `inUserPortfolio` INTEGER NOT NULL, PRIMARY KEY(`sid`))",
+        "fields": [
+          {
+            "fieldPath": "sid",
+            "columnName": "sid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "chartRange",
+            "columnName": "chartRange",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastClosePrice",
+            "columnName": "lastClosePrice",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "points",
+            "columnName": "points",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "inUserPortfolio",
+            "columnName": "inUserPortfolio",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "sid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_Indices_sid",
+            "unique": false,
+            "columnNames": [
+              "sid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Indices_sid` ON `${TABLE_NAME}` (`sid`)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cdac042205495726d3fc9946f9837209')"
+    ]
+  }
+}

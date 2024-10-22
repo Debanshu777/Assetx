@@ -2,13 +2,19 @@ package com.debanshudatta.fintrack.data.domain.model
 
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Entity
+@Entity(
+    indices = [Index(value = ["sid", "ticker"])]
+)
 @Serializable
 data class Stock(
+    @PrimaryKey
+    @SerialName("sid")
+    val sid: String,
     @SerialName("change")
     val change: Double = 0.0,
     @SerialName("marketCap")
@@ -19,11 +25,10 @@ data class Stock(
     val price: Double,
     @SerialName("sector")
     val sector: String,
-    @PrimaryKey
-    @SerialName("sid")
-    val sid: String,
     @SerialName("slug")
     val slug: String,
     @SerialName("ticker")
-    val ticker: String
+    val ticker: String,
+    @SerialName("inUserPortfolio")
+    val inUserPortfolio: Boolean = false
 )
