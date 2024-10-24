@@ -17,14 +17,14 @@ struct IndicesListItem: View {
             HStack {
                 Text(indices.name ?? "Null")
                 Spacer()
-                PerformanceChart(points: indices.points!.compactMap {
-                    Float(($0 as? Point)!.price)
+                PerformanceChart(points: indices.points.compactMap {
+                    Float(($0 as Point).price)
                 })
                 .frame(width: 80, height: 80)
                 Spacer()
                 VStack(alignment: .trailing) {
-                    let lastPrice = (indices.points?.last as! Point as Point).price
-                    let lastClose = Double(truncating:indices.lastClosePrice! as KotlinDouble)
+                    let lastPrice = (indices.points.last! as Point).price
+                    let lastClose = Double(truncating:indices.lastClosePrice as NSNumber)
                     
                     
                     Text("INR \(lastPrice.decimals(2))")

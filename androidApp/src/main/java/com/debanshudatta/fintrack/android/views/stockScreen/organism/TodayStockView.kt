@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -27,31 +26,31 @@ import com.debanshudatta.fintrack.data.domain.model.Type
 
 @Composable
 fun TodayStockView(
-    universeState: State<DataState<Stock>>,
+    universeState: State<DataState<List<Stock>>>,
     setStockType: (Type) -> Unit,
 ) {
     val tabsList: List<Pair<ChipItem, Type>> = listOf(
         Pair(
             ChipItem("Gainers", "https://assets.tickertape.in/images/landing-page/gainers.svg"),
-            Type.gainers
+            Type.GAINERS
         ),
         Pair(
             ChipItem("Losers", "https://assets.tickertape.in/images/landing-page/losers.svg"),
-            Type.losers
+            Type.LOSERS
         ),
         Pair(
             ChipItem(
                 "Most Active",
                 "https://assets.tickertape.in/images/landing-page/most_active.svg"
-            ), Type.active
+            ), Type.ACTIVE
         ),
         Pair(
             ChipItem("52W High", "https://assets.tickertape.in/images/landing-page/52w_high.svg"),
-            Type.approachingHigh
+            Type.APPROACHING_HIGH
         ),
         Pair(
             ChipItem("52W Low", "https://assets.tickertape.in/images/landing-page/52w_low.svg"),
-            Type.approachingLow
+            Type.APPROACHING_LOW
         ),
     )
     var selectedTabIndex by rememberSaveable { mutableIntStateOf(0) }

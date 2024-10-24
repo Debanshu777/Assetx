@@ -10,7 +10,10 @@ import SwiftUI
 import shared
 
 struct StockHoldingView: View {
+    var viewModel = KoinHelper().getAppViewModel()
+    @State var stockAssetState: DataState = DataStateUninitialized()
     var body: some View {
-        Text("Stock Holding")
+        StockAssetView(stockAssetState: $stockAssetState)
+            .collect(flow: viewModel.stockAssetData, into: $stockAssetState)
     }
 }

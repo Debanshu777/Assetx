@@ -17,7 +17,7 @@ internal class RemoteDataRepository {
     suspend fun getStockUniverse(universe: String, type: String): Result<Data, DataError> {
         val response = try {
             networkClient.get(
-                Constants.AnalyzeBaseUrl + Constants.HomePageStockPath
+                Constants.ANALYZE_BASE_URL + Constants.HOME_PAGE_STOCK_PATH
             ) {
                 url {
                     parameters.append("universe", universe)
@@ -46,7 +46,7 @@ internal class RemoteDataRepository {
     suspend fun getIndexHomePage():Result<List<Indices>, DataError>{
         val response = try {
             networkClient.get(
-                Constants.AnalyzeBaseUrl + Constants.HomePageIndicesPath
+                Constants.ANALYZE_BASE_URL + Constants.HOME_PAGE_INFICES_PATH
             )
         }catch (ex: UnresolvedAddressException) {
             return Result.Error(DataError.Network.NO_INTERNET)
@@ -66,5 +66,4 @@ internal class RemoteDataRepository {
             else -> Result.Error(DataError.Network.UNKNOWN)
         }
     }
-
 }

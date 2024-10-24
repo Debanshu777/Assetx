@@ -52,20 +52,23 @@ struct TodayStockView: View {
                         }
                     }
                 }
-            case let successState as DataStateSuccess<Stock>:
-                let stocks = successState.stocks.compactMap { $0 as? Stock }
-                ScrollView {
-                    VStack(spacing: 0) {
-                        ForEach(Array(stocks.enumerated()), id: \.element) { index, element in
-                            StockListItem(stock: element, isLoading: false)
-                            if (index < stocks.count - 1) {
-                                Divider()
-                                    .padding(.horizontal, 15)
+            case let successState as DataStateSuccess<AnyObject>:
+                if let stocks = successState.stocks as? [Stock] {
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            ForEach(Array(stocks.enumerated()), id: \.element) { index, element in
+                                StockListItem(stock: element, isLoading: false)
+                                if (index < stocks.count - 1) {
+                                    Divider()
+                                        .padding(.horizontal, 15)
+                                }
                             }
                         }
+                        .frame(height: 410)
+                        .padding(.horizontal, 10)
                     }
-                    .frame(height: 410)
-                    .padding(.horizontal, 10)
+                } else {
+                    Text("Unexpected data format")
                 }
             case is DataStateUninitialized:
                 ScrollView {
@@ -81,4 +84,3 @@ struct TodayStockView: View {
         }.frame(alignment: .leading)
     }
 }
-

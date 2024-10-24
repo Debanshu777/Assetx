@@ -26,5 +26,5 @@ data class Indices(
     @SerialName("type")
     val type: List<String>, //
     @SerialName("inUserPortfolio")
-    val inUserPortfolio: Boolean = false
+    val inWatchList: Boolean = false
 )

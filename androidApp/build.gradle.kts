@@ -47,7 +47,6 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
 
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.androidx.room.runtime.android)
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)

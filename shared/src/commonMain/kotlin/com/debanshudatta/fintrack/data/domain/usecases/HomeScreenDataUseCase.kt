@@ -17,6 +17,6 @@ class HomeScreenDataUseCase : KoinComponent {
 
     suspend fun getStockUniverse(universe: Universe, type: Type): Result<Data, DataError> =
         withContext(dispatcher.io) {
-            remoteDataRepository.getStockUniverse(universe.name, type.name)
+            remoteDataRepository.getStockUniverse(universe.name, type.value)
         }
 }

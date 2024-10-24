@@ -21,7 +21,7 @@ import com.debanshudatta.fintrack.data.domain.model.Indices
 
 @Composable
 fun GridIndicesView (
-    indicesState: State<DataState<Indices>>
+    indicesState: State<DataState<List<Indices>>>
 ){
     Column {
         Text(
@@ -51,4 +51,3 @@ fun GridIndicesView (
         }
     }
 }
-

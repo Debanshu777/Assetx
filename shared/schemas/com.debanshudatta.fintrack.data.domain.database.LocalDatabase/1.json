@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cdac042205495726d3fc9946f9837209",
+    "identityHash": "fea54abba788b8fe85c48a33a317dc64",
     "entities": [
       {
         "tableName": "Stock",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sid` TEXT NOT NULL, `change` REAL NOT NULL, `marketCap` TEXT NOT NULL, `name` TEXT NOT NULL, `price` REAL NOT NULL, `sector` TEXT NOT NULL, `slug` TEXT NOT NULL, `ticker` TEXT NOT NULL, `inUserPortfolio` INTEGER NOT NULL, PRIMARY KEY(`sid`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sid` TEXT NOT NULL, `change` REAL NOT NULL, `marketCap` TEXT NOT NULL, `name` TEXT NOT NULL, `price` REAL NOT NULL, `sector` TEXT NOT NULL, `slug` TEXT NOT NULL, `ticker` TEXT NOT NULL, `inWatchList` INTEGER NOT NULL, PRIMARY KEY(`sid`))",
         "fields": [
           {
             "fieldPath": "sid",
@@ -57,8 +57,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "inUserPortfolio",
-            "columnName": "inUserPortfolio",
+            "fieldPath": "inWatchList",
+            "columnName": "inWatchList",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -84,7 +84,7 @@
       },
       {
         "tableName": "Indices",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sid` TEXT NOT NULL, `chartRange` TEXT NOT NULL, `lastClosePrice` REAL NOT NULL, `name` TEXT, `points` TEXT NOT NULL, `type` TEXT NOT NULL, `inUserPortfolio` INTEGER NOT NULL, PRIMARY KEY(`sid`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sid` TEXT NOT NULL, `chartRange` TEXT NOT NULL, `lastClosePrice` REAL NOT NULL, `name` TEXT, `points` TEXT NOT NULL, `type` TEXT NOT NULL, `inWatchList` INTEGER NOT NULL, PRIMARY KEY(`sid`))",
         "fields": [
           {
             "fieldPath": "sid",
@@ -122,8 +122,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "inUserPortfolio",
-            "columnName": "inUserPortfolio",
+            "fieldPath": "inWatchList",
+            "columnName": "inWatchList",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -145,11 +145,71 @@
             "createSql": "CREATE INDEX IF NOT EXISTS `index_Indices_sid` ON `${TABLE_NAME}` (`sid`)"
           }
         ]
+      },
+      {
+        "tableName": "Assets",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `mappingId` TEXT NOT NULL, `type` TEXT NOT NULL, `marketValue` REAL NOT NULL, `averagePurchasedValue` REAL NOT NULL, `quantity` INTEGER NOT NULL, `transactions` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mappingId",
+            "columnName": "mappingId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "marketValue",
+            "columnName": "marketValue",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "averagePurchasedValue",
+            "columnName": "averagePurchasedValue",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantity",
+            "columnName": "quantity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transactions",
+            "columnName": "transactions",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cdac042205495726d3fc9946f9837209')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fea54abba788b8fe85c48a33a317dc64')"
     ]
   }
 }

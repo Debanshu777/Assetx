@@ -51,8 +51,8 @@ internal fun IndicesListItem(indices: Indices, isLastItem: Boolean) {
         ) {
             Text(indices.name ?: "Null")
             Spacer(modifier = Modifier.height(20.dp))
-            indices.points?.map { it?.price?.toFloat() ?: 0f }
-                ?.let {
+            indices.points.map { it.price.toFloat() }
+                .let {
                     PerformanceChart(
                         modifier = Modifier.size(80.dp),
                         list = it.toList()
@@ -62,13 +62,13 @@ internal fun IndicesListItem(indices: Indices, isLastItem: Boolean) {
             Column(
                 horizontalAlignment = Alignment.End
             ) {
-                Text("INR ${indices.points?.last()?.price?.roundTo()}")
+                Text("INR ${indices.points.last().price.roundTo()}")
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     AsyncImage(
                         modifier = Modifier.size(15.dp),
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(
-                                if (indices.points?.last()?.price!! - indices.lastClosePrice!! >= 0)
+                                if (indices.points.last().price - indices.lastClosePrice >= 0)
                                     "https://assets.tickertape.in/images/landing-page/52w_high.svg"
                                 else
                                     "https://assets.tickertape.in/images/landing-page/52w_low.svg"
@@ -79,8 +79,8 @@ internal fun IndicesListItem(indices: Indices, isLastItem: Boolean) {
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        "${(indices.points?.last()?.price!! - indices.lastClosePrice!!).roundTo().absoluteValue}%",
-                        color = if (indices.points?.last()?.price!! - indices.lastClosePrice!! >= 0) Color(
+                        "${(indices.points.last().price - indices.lastClosePrice).roundTo().absoluteValue}%",
+                        color = if (indices.points.last().price - indices.lastClosePrice >= 0) Color(
                             "#19af55".toColorInt()
                         ) else Color(
                             "#d82f44".toColorInt()
@@ -91,4 +91,3 @@ internal fun IndicesListItem(indices: Indices, isLastItem: Boolean) {
         }
     }
 }
-

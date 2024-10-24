@@ -50,9 +50,6 @@ kotlin {
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
         }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
-        }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.koin.android)

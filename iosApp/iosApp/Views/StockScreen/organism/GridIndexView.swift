@@ -27,18 +27,21 @@ struct GridIndexView: View{
                 ){
                     switch indicesList {
                     case is DataStateError:
-                        Text("Error")
+                        Text("DataStateError")
                     case is DataStateLoading:
-                        Text("Error")
-                    case let successState as DataStateSuccess<Indices>:
-                        @State var indices = successState.stocks.compactMap { $0 as? Indices }
-                        ForEach(0..<indices.count, id: \.self) { index in
-                            IndicesListItem(indices: indices[index])
-                                .frame(width: 350, height: 100)
-                                .padding([.leading, .trailing], 5)
+                        Text("DataStateLoading")
+                    case let successState as DataStateSuccess<AnyObject>:
+                        if let indices = successState.stocks as? [Indices] {
+                            ForEach(0..<indices.count, id: \.self) { index in
+                                IndicesListItem(indices: indices[index])
+                                    .frame(width: 350, height: 100)
+                                    .padding([.leading, .trailing], 5)
+                            }
+                        } else {
+                            Text("Unexpected data format")
                         }
                     case is DataStateUninitialized:
-                        Text("Error")
+                        Text("DataStateUninitialized")
                     default:
                         Text("error")
                     }

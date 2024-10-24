@@ -30,5 +30,5 @@ data class Stock(
     @SerialName("ticker")
     val ticker: String,
     @SerialName("inUserPortfolio")
-    val inUserPortfolio: Boolean = false
+    val inWatchList: Boolean = false
 )

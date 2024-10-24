@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
+import com.debanshudatta.fintrack.data.domain.database.entities.AssetEntity
+import com.debanshudatta.fintrack.data.domain.database.entities.AssetType
 import com.debanshudatta.fintrack.data.domain.model.Indices
 import com.debanshudatta.fintrack.data.domain.model.Stock
 import kotlinx.coroutines.flow.Flow
@@ -28,8 +30,8 @@ interface LocalDao {
     fun getAllStocks(): Flow<List<Stock>>
 
     @Transaction
-    @Query("SELECT * FROM Stock ORDER BY inUserPortfolio DESC")
-    fun getAllStocksInUserProfile(): Flow<List<Stock>>
+    @Query("SELECT * FROM Stock ORDER BY inWatchList DESC")
+    fun getAllStocksInUserWatchList(): Flow<List<Stock>>
 
     @Transaction
     @Query("SELECT * FROM Stock WHERE sector = :sector")
@@ -40,8 +42,8 @@ interface LocalDao {
     suspend fun getStockByTicker(ticker: String): Stock
 
     @Transaction
-    @Query("UPDATE Stock SET inUserPortfolio = :inUserPortfolio WHERE sid = :sid")
-    suspend fun updateStockInUserPortfolio(sid: String, inUserPortfolio: Boolean)
+    @Query("UPDATE Stock SET inWatchList = :inWatchList WHERE sid = :sid")
+    suspend fun updateStockInUserWatchList(sid: String, inWatchList: Boolean)
 
 
 
@@ -51,8 +53,8 @@ interface LocalDao {
     fun getAllIndices(): Flow<List<Indices>>
 
     @Transaction
-    @Query("SELECT * FROM Indices ORDER BY inUserPortfolio DESC")
-    fun getAllIndicesInUserProfile(): Flow<List<Indices>>
+    @Query("SELECT * FROM Indices ORDER BY inWatchList DESC")
+    fun getAllIndicesInUserWatchList(): Flow<List<Indices>>
 
 
     @Transaction
@@ -67,6 +69,20 @@ interface LocalDao {
     suspend fun upsertIndices(indices: Indices)
 
     @Transaction
-    @Query("UPDATE Indices SET inUserPortfolio = :inUserPortfolio WHERE sid = :sid")
-    suspend fun updateIndicesInUserPortfolio(sid: String, inUserPortfolio: Boolean)
+    @Query("UPDATE Indices SET inWatchList = :inWatchList WHERE sid = :sid")
+    suspend fun updateIndicesInUserWatchList(sid: String, inWatchList: Boolean)
+
+
+    //Asset
+    @Transaction
+    @Query("SELECT * FROM Assets")
+    fun getAllAssets(): Flow<List<AssetEntity>>
+
+    @Transaction
+    @Query("SELECT * FROM Assets WHERE type = :type")
+    fun getAssetsByType(type: AssetType): Flow<List<AssetEntity>>
+
+    @Transaction
+    @Upsert
+    suspend fun upsertAsset(asset: AssetEntity):Long
 }

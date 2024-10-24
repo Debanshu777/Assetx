@@ -3,6 +3,8 @@ package com.debanshudatta.fintrack.data
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.debanshudatta.fintrack.data.domain.Result
+import com.debanshudatta.fintrack.data.domain.database.entities.AssetEntity
+import com.debanshudatta.fintrack.data.domain.database.entities.AssetType
 import com.debanshudatta.fintrack.data.domain.error.DataError
 import com.debanshudatta.fintrack.data.domain.model.Indices
 import com.debanshudatta.fintrack.data.domain.model.Stock
@@ -10,29 +12,63 @@ import com.debanshudatta.fintrack.data.domain.model.Type
 import com.debanshudatta.fintrack.data.domain.model.Universe
 import com.debanshudatta.fintrack.data.domain.polling.PollingCallback
 import com.debanshudatta.fintrack.data.domain.polling.PollingManager
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import com.debanshudatta.fintrack.data.domain.usecases.GetStockAssetDataUseCase
 import com.debanshudatta.fintrack.data.domain.usecases.HomeScreenDataUseCase
 import com.debanshudatta.fintrack.data.domain.usecases.IndicesDataUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AppViewModel(
     private val homeScreenDataUseCase: HomeScreenDataUseCase,
-    private val indicesDataUseCase: IndicesDataUseCase
+    private val indicesDataUseCase: IndicesDataUseCase,
+    private val getStockAssetDataUseCase: GetStockAssetDataUseCase
 ) : ViewModel(), PollingCallback {
-    private val _universeDataList = MutableStateFlow<DataState<Stock>>(DataState.Uninitialized)
-    val universeDataList = _universeDataList.asStateFlow()
-
-    private val _indicesList = MutableStateFlow<DataState<Indices>>(DataState.Uninitialized)
-    val indicesList = _indicesList.asStateFlow()
 
     private val _universe = MutableStateFlow(Universe.LargeCap)
-    private val _type = MutableStateFlow(Type.gainers)
-
+    private val _type = MutableStateFlow(Type.GAINERS)
     private val pollingManager: PollingManager = PollingManager(this)
+
+    private val _universeDataList =
+        MutableStateFlow<DataState<List<Stock>>>(DataState.Uninitialized)
+    val universeDataList = _universeDataList.asStateFlow()
+    private val _indicesList =
+        MutableStateFlow<DataState<List<Indices>>>(DataState.Uninitialized)
+    val indicesList = _indicesList.asStateFlow()
+    private val _stockAssetData =
+        MutableStateFlow<DataState<List<AssetEntity>>>(DataState.Uninitialized)
+    val stockAssetData = _stockAssetData.asStateFlow()
 
     init {
         pollingManager.startPolling(viewModelScope)
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                getStockAssetDataUseCase.upsertStockAsset(
+                    AssetEntity(
+                        name = "Apple",
+                        mappingId = "AAPL",
+                        type = AssetType.STOCK,
+                        marketValue = 100.0,
+                        averagePurchasedValue = 10.0,
+                        quantity = 1000,
+                        transactions = emptyList()
+                    )
+                )
+            }
+            getStockAssetDataUseCase
+                .getStockAssetData(AssetType.STOCK)
+                .onStart { _stockAssetData.tryEmit(DataState.Loading) }
+                .catch { error ->
+                    _stockAssetData.tryEmit(DataState.Error(error.message ?: "Unknown Error"))
+                }.collect { items ->
+                    _stockAssetData.tryEmit(DataState.Success(items))
+                }
+        }
     }
 
     fun setUniverse(universe: Universe) {
@@ -41,6 +77,7 @@ class AppViewModel(
     }
 
     fun setType(type: Type) {
+        if(_type.value == type) return
         _type.value = type
         _universeDataList.tryEmit(DataState.Loading)
         getUniverseDataList()
@@ -48,7 +85,7 @@ class AppViewModel(
 
     private fun getIndicesList() {
         viewModelScope.launch {
-            when(val response = indicesDataUseCase.getIndexHomePage()){
+            when (val response = indicesDataUseCase.getIndexHomePage()) {
                 is Result.Error -> _universeDataList.tryEmit(
                     when (response.error) {
                         DataError.Local.DISK_FULL -> DataState.Error("DISK_FULL")
@@ -62,6 +99,7 @@ class AppViewModel(
                         DataError.Network.UNKNOWN -> DataState.Error("UNKNOWN")
                     }
                 )
+
                 is Result.Success -> _indicesList.tryEmit(DataState.Success(response.data))
             }
         }
@@ -87,23 +125,23 @@ class AppViewModel(
 
                 is Result.Success -> {
                     val incomingData = when (_type.value) {
-                        Type.gainers -> {
+                        Type.GAINERS -> {
                             response.data.gainers
                         }
 
-                        Type.active -> {
+                        Type.ACTIVE -> {
                             response.data.active
                         }
 
-                        Type.losers -> {
+                        Type.LOSERS -> {
                             response.data.losers
                         }
 
-                        Type.approachingHigh -> {
+                        Type.APPROACHING_HIGH -> {
                             response.data.approachingHigh
                         }
 
-                        Type.approachingLow -> {
+                        Type.APPROACHING_LOW -> {
                             response.data.approachingLow
                         }
                     }
@@ -122,13 +160,18 @@ class AppViewModel(
         print(exception.message)
     }
 
-    fun stopPolling() {
+    override fun onCleared() {
+        stopPolling()
+        super.onCleared()
+    }
+
+    private fun stopPolling() {
         pollingManager.stopPolling()
     }
 }
 
 sealed interface DataState<out T> {
-    data class Success<T>(val stocks: List<T>) : DataState<T>
+    data class Success<T>(val stocks: T) : DataState<T>
     data class Error(val error: String) : DataState<Nothing>
     data object Loading : DataState<Nothing>
     data object Uninitialized : DataState<Nothing>
