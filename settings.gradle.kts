@@ -17,3 +17,6 @@ dependencyResolutionManagement {
 rootProject.name = "FinTrack"
 include(":androidApp")
 include(":shared")
+include(":shared:core")
+include(":shared:core:network")
+include(":shared:core:database")

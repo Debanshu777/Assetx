@@ -1,8 +1,8 @@
 package com.debanshudatta.fintrack.data.repository
 
-import com.debanshudatta.fintrack.data.domain.database.LocalDatabase
-import com.debanshudatta.fintrack.data.domain.database.entities.AssetEntity
-import com.debanshudatta.fintrack.data.domain.database.entities.AssetType
+import com.debanshudatta.fintrack.LocalDatabase
+import com.debanshudatta.fintrack.entities.AssetEntity
+import com.debanshudatta.fintrack.entities.AssetType
 import kotlinx.coroutines.flow.Flow
 
 internal class LocalDataRepository(private val localDatabase: LocalDatabase) {

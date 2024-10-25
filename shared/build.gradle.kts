@@ -5,10 +5,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.room)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.touchlab.skie)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
@@ -36,28 +34,15 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.ktor.client.core)
-            implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization.json)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.ktor.client.logging)
-
-            api(libs.koin.core)
+            implementation(libs.koin.core)
+            api(project(":shared:core:network"))
+            api(project(":shared:core:database"))
 
             implementation(libs.lifecycle.viewmodel)
-
-            implementation(libs.androidx.room.runtime)
-            implementation(libs.sqlite.bundled)
         }
         androidMain.dependencies {
-            implementation(libs.ktor.client.okhttp)
             implementation(libs.koin.android)
-
-            implementation(libs.koin.android)
-        }
-        nativeMain.dependencies {
-            implementation(libs.ktor.client.darwin)
         }
     }
 }
@@ -66,14 +51,6 @@ skie {
     features {
         enableSwiftUIObservingPreview = true
     }
-}
-
-room {
-    schemaDirectory("$projectDir/schemas")
-}
-
-dependencies {
-    ksp(libs.androidx.room.compiler)
 }
 
 android {

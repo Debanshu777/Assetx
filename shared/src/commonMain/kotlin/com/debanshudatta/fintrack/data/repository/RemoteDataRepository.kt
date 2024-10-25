@@ -1,69 +1,25 @@
 package com.debanshudatta.fintrack.data.repository
 
-import com.debanshudatta.fintrack.data.domain.Result
-import com.debanshudatta.fintrack.data.domain.error.DataError
-import com.debanshudatta.fintrack.data.domain.model.Data
-import com.debanshudatta.fintrack.data.domain.model.Indices
+import com.debanshudatta.fintrack.ClientWrapper
+import com.debanshudatta.fintrack.Result
 import com.debanshudatta.fintrack.data.domain.model.IndicesResponse
 import com.debanshudatta.fintrack.data.domain.model.Response
-import com.debanshudatta.fintrack.data.networkClient
+import com.debanshudatta.fintrack.error.DataError
 import com.debanshudatta.fintrack.utils.Constants
-import io.ktor.client.request.get
-import io.ktor.client.call.body
-import io.ktor.util.network.UnresolvedAddressException
-import kotlinx.serialization.SerializationException
 
 internal class RemoteDataRepository {
-    suspend fun getStockUniverse(universe: String, type: String): Result<Data, DataError> {
-        val response = try {
-            networkClient.get(
-                Constants.ANALYZE_BASE_URL + Constants.HOME_PAGE_STOCK_PATH
-            ) {
-                url {
-                    parameters.append("universe", universe)
-                    parameters.append("type", type)
-                }
-            }
-        } catch (ex: UnresolvedAddressException) {
-            return Result.Error(DataError.Network.NO_INTERNET)
-        }catch (ex: SerializationException) {
-            return Result.Error(DataError.Network.SERIALIZATION)
-        }
-        return when(response.status.value) {
-            in 200..299 -> {
-                val apiResult = response.body<Response>()
-                Result.Success(apiResult.data)
-            }
-            401 -> Result.Error(DataError.Network.UNAUTHORIZED)
-            409 -> Result.Error(DataError.Network.CONFLICT)
-            408 -> Result.Error(DataError.Network.REQUEST_TIMEOUT)
-            413 -> Result.Error(DataError.Network.PAYLOAD_TOO_LARGE)
-            in 500..599 -> Result.Error(DataError.Network.SERVER_ERROR)
-            else -> Result.Error(DataError.Network.UNKNOWN)
-        }
+    private val clientWrapper = ClientWrapper()
+    suspend fun getStockUniverse(universe: String, type: String): Result<Response, DataError> {
+        return clientWrapper.networkGetUsecase<Response>(
+            Constants.ANALYZE_BASE_URL + Constants.HOME_PAGE_STOCK_PATH,
+            mapOf("universe" to universe, "type" to type)
+        )
     }
 
-    suspend fun getIndexHomePage():Result<List<Indices>, DataError>{
-        val response = try {
-            networkClient.get(
-                Constants.ANALYZE_BASE_URL + Constants.HOME_PAGE_INFICES_PATH
-            )
-        }catch (ex: UnresolvedAddressException) {
-            return Result.Error(DataError.Network.NO_INTERNET)
-        }catch (ex: SerializationException) {
-            return Result.Error(DataError.Network.SERIALIZATION)
-        }
-        return when(response.status.value) {
-            in 200..299 -> {
-                val apiResult = response.body<IndicesResponse>()
-                Result.Success(apiResult.data)
-            }
-            401 -> Result.Error(DataError.Network.UNAUTHORIZED)
-            409 -> Result.Error(DataError.Network.CONFLICT)
-            408 -> Result.Error(DataError.Network.REQUEST_TIMEOUT)
-            413 -> Result.Error(DataError.Network.PAYLOAD_TOO_LARGE)
-            in 500..599 -> Result.Error(DataError.Network.SERVER_ERROR)
-            else -> Result.Error(DataError.Network.UNKNOWN)
-        }
+    suspend fun getIndexHomePage(): Result<IndicesResponse, DataError> {
+        return clientWrapper.networkGetUsecase<IndicesResponse>(
+            Constants.ANALYZE_BASE_URL + Constants.HOME_PAGE_INFICES_PATH,
+           null
+        )
     }
 }

@@ -2,21 +2,21 @@ package com.debanshudatta.fintrack.data
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.debanshudatta.fintrack.data.domain.Result
-import com.debanshudatta.fintrack.data.domain.database.entities.AssetEntity
-import com.debanshudatta.fintrack.data.domain.database.entities.AssetType
-import com.debanshudatta.fintrack.data.domain.error.DataError
 import com.debanshudatta.fintrack.data.domain.model.Indices
 import com.debanshudatta.fintrack.data.domain.model.Stock
 import com.debanshudatta.fintrack.data.domain.model.Type
 import com.debanshudatta.fintrack.data.domain.model.Universe
-import com.debanshudatta.fintrack.data.domain.polling.PollingCallback
-import com.debanshudatta.fintrack.data.domain.polling.PollingManager
 import com.debanshudatta.fintrack.data.domain.usecases.GetStockAssetDataUseCase
 import com.debanshudatta.fintrack.data.domain.usecases.HomeScreenDataUseCase
 import com.debanshudatta.fintrack.data.domain.usecases.IndicesDataUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import com.debanshudatta.fintrack.Result
+import com.debanshudatta.fintrack.entities.AssetEntity
+import com.debanshudatta.fintrack.entities.AssetType
+import com.debanshudatta.fintrack.error.DataError
+import com.debanshudatta.fintrack.polling.PollingCallback
+import com.debanshudatta.fintrack.polling.PollingManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch

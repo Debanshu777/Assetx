@@ -18,7 +18,7 @@ struct StockAssetView: View {
         case is DataStateLoading:
             Text("DataStateLoading")
         case let successState as DataStateSuccess<AnyObject>:
-            if let assets = successState.stocks as? [AssetEntity] {
+            if let assets = successState.stocks as? [DatabaseAssetEntity] {
                 ForEach(0..<assets.count, id: \.self) { index in
                     Text(assets[index].description())
                 }

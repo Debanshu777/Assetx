@@ -1,6 +1,5 @@
 package com.debanshudatta.fintrack.data.domain.model
 
-
 import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName

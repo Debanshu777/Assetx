@@ -1,8 +1,8 @@
 package com.debanshudatta.fintrack.data.domain.usecases
 
-import com.debanshudatta.fintrack.data.domain.database.entities.AssetEntity
-import com.debanshudatta.fintrack.data.domain.database.entities.AssetType
 import com.debanshudatta.fintrack.data.repository.LocalDataRepository
+import com.debanshudatta.fintrack.entities.AssetEntity
+import com.debanshudatta.fintrack.entities.AssetType
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
