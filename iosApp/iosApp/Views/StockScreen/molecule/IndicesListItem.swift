@@ -10,7 +10,7 @@ import SwiftUI
 import shared
 
 struct IndicesListItem: View {
-    let indices: Indices
+    let indices: DataIndices
     
     var body: some View {
         VStack {
@@ -18,12 +18,12 @@ struct IndicesListItem: View {
                 Text(indices.name ?? "Null")
                 Spacer()
                 PerformanceChart(points: indices.points.compactMap {
-                    Float(($0 as Point).price)
+                    Float(($0 as DataPoint).price)
                 })
                 .frame(width: 80, height: 80)
                 Spacer()
                 VStack(alignment: .trailing) {
-                    let lastPrice = (indices.points.last! as Point).price
+                    let lastPrice = (indices.points.last! as DataPoint).price
                     let lastClose = Double(truncating:indices.lastClosePrice as NSNumber)
                     
                     

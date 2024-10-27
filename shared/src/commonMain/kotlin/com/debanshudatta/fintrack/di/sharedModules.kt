@@ -1,16 +1,13 @@
 package com.debanshudatta.fintrack.di
 
-import com.debanshudatta.fintrack.data.AppViewModel
-import com.debanshudatta.fintrack.data.domain.usecases.GetStockAssetDataUseCase
-import com.debanshudatta.fintrack.data.domain.usecases.HomeScreenDataUseCase
-import com.debanshudatta.fintrack.data.domain.usecases.IndicesDataUseCase
-import com.debanshudatta.fintrack.data.repository.LocalDataRepository
-import com.debanshudatta.fintrack.data.repository.RemoteDataRepository
+import com.debanshudatta.fintrack.AppViewModel
+import com.debanshudatta.fintrack.data.di.dataModule
+import com.debanshudatta.fintrack.usecase.GetStockAssetDataUseCase
+import com.debanshudatta.fintrack.usecase.HomeScreenDataUseCase
+import com.debanshudatta.fintrack.usecase.IndicesDataUseCase
 import org.koin.dsl.module
 
-private val dataModule = module {
-    single { RemoteDataRepository() }
-    single { LocalDataRepository(get()) }
+private val domainModule = module {
     factory { HomeScreenDataUseCase() }
     factory { IndicesDataUseCase() }
     factory { GetStockAssetDataUseCase() }
@@ -18,7 +15,7 @@ private val dataModule = module {
 }
 
 private val sharedModules = listOf(
-    dataModule, platformModule
+    domainModule, platformModule
 )
 
-fun getSharedModules() = sharedModules + databaseModule
+fun getSharedModules() = sharedModules + databaseModule + dataModule

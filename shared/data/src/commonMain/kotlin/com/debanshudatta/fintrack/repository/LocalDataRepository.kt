@@ -5,7 +5,7 @@ import com.debanshudatta.fintrack.entities.AssetEntity
 import com.debanshudatta.fintrack.entities.AssetType
 import kotlinx.coroutines.flow.Flow
 
-internal class LocalDataRepository(private val localDatabase: LocalDatabase) {
+class LocalDataRepository(private val localDatabase: LocalDatabase) {
     fun getStockAssetData(assetType: AssetType): Flow<List<AssetEntity>> {
         return if (assetType != AssetType.ALL) {
             localDatabase.localDao().getAssetsByType(assetType)

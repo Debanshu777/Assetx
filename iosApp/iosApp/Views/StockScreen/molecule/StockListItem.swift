@@ -10,7 +10,7 @@ import SwiftUI
 import shared
 
 struct StockListItem: View {
-    let stock: Stock?
+    let stock: DataStock?
     let isLoading: Bool
     
     var body: some View {
@@ -69,25 +69,25 @@ struct StockListItem: View {
         .padding(.vertical, 15)
     }
     
-    private func stockImageURL(stock: Stock?, isLoading: Bool) -> URL? {
+    private func stockImageURL(stock: DataStock?, isLoading: Bool) -> URL? {
         guard !isLoading, let stock = stock else { return nil }
         return URL(string: "https://assets.tickertape.in/stock-logos/\(stock.sid).png")
     }
     
-    private func stockName(stock: Stock?, isLoading: Bool) -> String {
+    private func stockName(stock: DataStock?, isLoading: Bool) -> String {
         return isLoading ? "" : stock?.name ?? ""
     }
     
-    private func stockTicker(stock: Stock?, isLoading: Bool) -> String {
+    private func stockTicker(stock: DataStock?, isLoading: Bool) -> String {
         return isLoading ? "" : stock?.ticker ?? ""
     }
     
-    private func stockPrice(stock: Stock?, isLoading: Bool) -> String {
+    private func stockPrice(stock: DataStock?, isLoading: Bool) -> String {
         guard !isLoading, let stock = stock else { return "" }
         return "INR \(stock.price.decimals(2))"
     }
     
-    private func stockChange(stock: Stock?, isLoading: Bool) -> String {
+    private func stockChange(stock: DataStock?, isLoading: Bool) -> String {
         guard !isLoading, let stock = stock else { return "" }
         let change = abs(stock.change).decimals(2)
         return "\(change)%"

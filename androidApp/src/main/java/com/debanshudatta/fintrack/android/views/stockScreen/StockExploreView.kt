@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.debanshudatta.fintrack.android.views.stockScreen.organism.GridIndicesView
 import com.debanshudatta.fintrack.android.views.stockScreen.organism.TodayStockView
-import com.debanshudatta.fintrack.data.AppViewModel
+import com.debanshudatta.fintrack.AppViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

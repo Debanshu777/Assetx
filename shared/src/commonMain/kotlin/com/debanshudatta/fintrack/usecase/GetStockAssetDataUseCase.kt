@@ -1,4 +1,4 @@
-package com.debanshudatta.fintrack.data.domain.usecases
+package com.debanshudatta.fintrack.usecase
 
 import com.debanshudatta.fintrack.data.repository.LocalDataRepository
 import com.debanshudatta.fintrack.entities.AssetEntity

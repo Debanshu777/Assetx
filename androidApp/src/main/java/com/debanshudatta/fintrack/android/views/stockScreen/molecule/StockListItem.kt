@@ -31,7 +31,7 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.debanshudatta.fintrack.android.views.common.extension.roundTo
 import com.debanshudatta.fintrack.android.views.common.extension.shimmerBrush
-import com.debanshudatta.fintrack.data.domain.model.Stock
+import com.debanshudatta.fintrack.data.model.Stock
 import kotlin.math.absoluteValue
 
 @Composable

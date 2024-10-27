@@ -1,4 +1,4 @@
-package com.debanshudatta.fintrack.data.domain.model
+package com.debanshudatta.fintrack.data.model
 
 import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
 data class Data(
     @EncodeDefault
     @SerialName("losers")
-    val losers: List<Stock> = emptyList() ,
+    val losers: List<Stock> = emptyList(),
 
     @EncodeDefault
     @SerialName("gainers")

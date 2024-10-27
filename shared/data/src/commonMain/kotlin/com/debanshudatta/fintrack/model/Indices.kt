@@ -1,4 +1,4 @@
-package com.debanshudatta.fintrack.data.domain.model
+package com.debanshudatta.fintrack.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.sp
 import com.debanshudatta.fintrack.android.views.common.model.ChipItem
 import com.debanshudatta.fintrack.android.views.common.organism.DynamicTapNavigationOrganism
 import com.debanshudatta.fintrack.android.views.stockScreen.molecule.StockListItem
-import com.debanshudatta.fintrack.data.DataState
-import com.debanshudatta.fintrack.data.domain.model.Stock
-import com.debanshudatta.fintrack.data.domain.model.Type
+import com.debanshudatta.fintrack.DataState
+import com.debanshudatta.fintrack.data.model.Stock
+import com.debanshudatta.fintrack.data.model.Type
 
 @Composable
 fun TodayStockView(

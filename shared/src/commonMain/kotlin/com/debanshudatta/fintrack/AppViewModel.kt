@@ -1,22 +1,22 @@
-package com.debanshudatta.fintrack.data
+package com.debanshudatta.fintrack
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.debanshudatta.fintrack.data.domain.model.Indices
-import com.debanshudatta.fintrack.data.domain.model.Stock
-import com.debanshudatta.fintrack.data.domain.model.Type
-import com.debanshudatta.fintrack.data.domain.model.Universe
-import com.debanshudatta.fintrack.data.domain.usecases.GetStockAssetDataUseCase
-import com.debanshudatta.fintrack.data.domain.usecases.HomeScreenDataUseCase
-import com.debanshudatta.fintrack.data.domain.usecases.IndicesDataUseCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import com.debanshudatta.fintrack.Result
+import com.debanshudatta.fintrack.data.model.Indices
+import com.debanshudatta.fintrack.data.model.Stock
+import com.debanshudatta.fintrack.data.model.Type
+import com.debanshudatta.fintrack.data.model.Universe
 import com.debanshudatta.fintrack.entities.AssetEntity
 import com.debanshudatta.fintrack.entities.AssetType
 import com.debanshudatta.fintrack.error.DataError
 import com.debanshudatta.fintrack.polling.PollingCallback
 import com.debanshudatta.fintrack.polling.PollingManager
+import com.debanshudatta.fintrack.usecase.GetStockAssetDataUseCase
+import com.debanshudatta.fintrack.usecase.HomeScreenDataUseCase
+import com.debanshudatta.fintrack.usecase.IndicesDataUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import com.debanshudatta.fintrack.Result
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
@@ -77,7 +77,7 @@ class AppViewModel(
     }
 
     fun setType(type: Type) {
-        if(_type.value == type) return
+        if (_type.value == type) return
         _type.value = type
         _universeDataList.tryEmit(DataState.Loading)
         getUniverseDataList()

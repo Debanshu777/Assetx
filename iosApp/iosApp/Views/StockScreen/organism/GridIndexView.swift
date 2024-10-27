@@ -31,7 +31,7 @@ struct GridIndexView: View{
                     case is DataStateLoading:
                         Text("DataStateLoading")
                     case let successState as DataStateSuccess<AnyObject>:
-                        if let indices = successState.stocks as? [Indices] {
+                        if let indices = successState.stocks as? [DataIndices] {
                             ForEach(0..<indices.count, id: \.self) { index in
                                 IndicesListItem(indices: indices[index])
                                     .frame(width: 350, height: 100)

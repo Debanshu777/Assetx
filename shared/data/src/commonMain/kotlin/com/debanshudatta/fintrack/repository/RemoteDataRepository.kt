@@ -2,12 +2,12 @@ package com.debanshudatta.fintrack.data.repository
 
 import com.debanshudatta.fintrack.ClientWrapper
 import com.debanshudatta.fintrack.Result
-import com.debanshudatta.fintrack.data.domain.model.IndicesResponse
-import com.debanshudatta.fintrack.data.domain.model.Response
+import com.debanshudatta.fintrack.data.model.IndicesResponse
+import com.debanshudatta.fintrack.data.model.Response
+import com.debanshudatta.fintrack.data.utils.Constants
 import com.debanshudatta.fintrack.error.DataError
-import com.debanshudatta.fintrack.utils.Constants
 
-internal class RemoteDataRepository {
+class RemoteDataRepository {
     private val clientWrapper = ClientWrapper()
     suspend fun getStockUniverse(universe: String, type: String): Result<Response, DataError> {
         return clientWrapper.networkGetUsecase<Response>(

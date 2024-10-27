@@ -25,7 +25,7 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.debanshudatta.fintrack.android.views.common.extension.roundTo
 import com.debanshudatta.fintrack.android.views.stockScreen.organism.PerformanceChart
-import com.debanshudatta.fintrack.data.domain.model.Indices
+import com.debanshudatta.fintrack.data.model.Indices
 import kotlin.math.absoluteValue
 
 @Composable

@@ -1,4 +1,4 @@
-package com.debanshudatta.fintrack.data.domain.model
+package com.debanshudatta.fintrack.data.model
 
 enum class Universe {
     SmallCap,

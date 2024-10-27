@@ -13,9 +13,9 @@ struct TodayStockView: View {
     @State private var activeTab: Int = 0
     @Environment(\.colorScheme) private var scheme
     @Namespace private var animation
-    var setStockType: (Type_) -> ()
+    var setStockType: (DataType) -> ()
     
-    let tabsList: [(ChipItem, Type_)] = [
+    let tabsList: [(ChipItem, DataType)] = [
         (ChipItem(name: "Gainers", iconUrl: "https://assets.tickertape.in/images/landing-page/gainers.svg"), .gainers),
         (ChipItem(name: "Losers", iconUrl: "https://assets.tickertape.in/images/landing-page/losers.svg"), .losers),
         (ChipItem(name: "Most Active", iconUrl: "https://assets.tickertape.in/images/landing-page/most_active.svg"), .active),
@@ -53,7 +53,7 @@ struct TodayStockView: View {
                     }
                 }
             case let successState as DataStateSuccess<AnyObject>:
-                if let stocks = successState.stocks as? [Stock] {
+                if let stocks = successState.stocks as? [DataStock] {
                     ScrollView {
                         VStack(spacing: 0) {
                             ForEach(Array(stocks.enumerated()), id: \.element) { index, element in

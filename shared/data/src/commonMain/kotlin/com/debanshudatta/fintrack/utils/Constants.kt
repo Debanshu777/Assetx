@@ -1,4 +1,4 @@
-package com.debanshudatta.fintrack.utils
+package com.debanshudatta.fintrack.data.utils
 
 object Constants {
     const val ANALYZE_BASE_URL ="https://analyze.api.tickertape.in"

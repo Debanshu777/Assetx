@@ -16,8 +16,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.debanshudatta.fintrack.android.views.stockScreen.molecule.IndicesListItem
-import com.debanshudatta.fintrack.data.DataState
-import com.debanshudatta.fintrack.data.domain.model.Indices
+import com.debanshudatta.fintrack.DataState
+import com.debanshudatta.fintrack.data.model.Indices
 
 @Composable
 fun GridIndicesView (
