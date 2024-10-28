@@ -16,7 +16,6 @@ import com.debanshudatta.fintrack.usecase.HomeScreenDataUseCase
 import com.debanshudatta.fintrack.usecase.IndicesDataUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
-import com.debanshudatta.fintrack.Result
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
