@@ -12,14 +12,14 @@ struct StockAssetView: View {
         let currentTotalValue = assets.reduce(0) { $0 + $1.marketValue * Double($1.quantity) }
         let totalReturns = currentTotalValue - totalInvested
         let totalReturnsPercentage = totalInvested > 0 ? (totalReturns / totalInvested) * 100 : 0
-
+        
         return AssetAggregator(
             currentTotalValue: currentTotalValue,
             totalInvested: totalInvested,
             totalReturnsPercentage: totalReturnsPercentage
         )
     }
-
+    
     var body: some View {
         switch stockAssetState {
         case is DataStateError:
@@ -29,9 +29,9 @@ struct StockAssetView: View {
         case let successState as DataStateSuccess<AnyObject>:
             if let assets = successState.stocks as? [DatabaseAssetEntity] {
                 let aggregator = calculateAggregator(assets: assets)
-
+                
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading) {
                         // Aggregator View
                         VStack(alignment: .leading, spacing: 10) {
                             HStack {
@@ -53,7 +53,7 @@ struct StockAssetView: View {
                                     Text("Invested")
                                         .font(.caption)
                                     Text("₹\(aggregator.totalInvested, specifier: "%.2f")")
-
+                                    
                                 }
                                 Spacer()
                                 VStack(alignment: .trailing) {
@@ -65,30 +65,28 @@ struct StockAssetView: View {
                             }
                         }
                         .padding()
-                        .cornerRadius(12)
-
+                        
                         // Listing View
                         VStack(spacing: 10) {
                             ForEach(assets, id: \.mappingId) { asset in
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(asset.name)
-                                        .font(.headline)
-                                    HStack {
+                                HStack{
+                                    VStack(alignment: .leading){
+                                        Text(asset.name)
+                                            .font(.headline)
                                         Text("\(asset.quantity) shares")
                                             .font(.subheadline)
-                                        Spacer()
-                                        let profitValue = (asset.marketValue - asset.averagePurchasedValue) * Double(asset.quantity)
-                                        let profitPercentage = (asset.marketValue - asset.averagePurchasedValue) / asset.averagePurchasedValue * 100
-                                        VStack(alignment: .trailing){
-                                            Text("+₹\(profitValue, specifier: "%.2f")")
-                                                .font(.subheadline)
-                                            Text("(\(profitPercentage, specifier: "%.2f")%)")
-                                                .font(.caption)
-                                        }
+                                    }
+                                    Spacer()
+                                    let profitValue = (asset.marketValue - asset.averagePurchasedValue) * Double(asset.quantity)
+                                    let profitPercentage = (asset.marketValue - asset.averagePurchasedValue) / asset.averagePurchasedValue * 100
+                                    VStack(alignment: .trailing){
+                                        Text("+₹\(profitValue, specifier: "%.2f")")
+                                            .font(.subheadline)
+                                        Text("(\(profitPercentage, specifier: "%.2f")%)")
+                                            .font(.caption)
                                     }
                                 }
                                 .padding(.vertical, 5)
-                                .cornerRadius(8)
                             }
                         }
                         .padding(.horizontal)

@@ -18,7 +18,7 @@ struct DynamicTapNavigationOrganism: View {
     
     var body: some View {
         ScrollView(.horizontal) {
-            HStack(spacing: 12) {
+            HStack(spacing: 10) {
                 ForEach(tabs.indices, id: \.self) { index in
                     TabButton(
                         tab: tabs[index],
@@ -37,7 +37,6 @@ struct DynamicTapNavigationOrganism: View {
             }
         }
         .scrollIndicators(.hidden)
-        .frame(height: 50)
     }
 }
 

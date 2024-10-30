@@ -15,15 +15,13 @@ struct StockExploreView: View {
     @State var indicesList: DataState = DataStateUninitialized()
     var body: some View {
         ScrollView(.vertical) {
-            LazyVStack{
-                Spacer().frame(height: 20)
+            LazyVStack(alignment: .listRowSeparatorLeading,spacing: 40){
                 GridIndexView(indicesList: $indicesList)
                     .collect(flow: viewModel.indicesList, into: $indicesList)
-                Spacer().frame(height: 40)
                 TodayStockView(universeList: $uiState) { type in
                     viewModel.setType(type: type)
                 }.collect(flow: viewModel.universeDataList, into: $uiState)
             }
-        }
+        }.scrollIndicators(.hidden)
     }
 }
