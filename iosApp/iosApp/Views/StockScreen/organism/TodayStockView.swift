@@ -45,37 +45,31 @@ struct TodayStockView: View {
             case is DataStateError:
                 Text("Error")
             case is DataStateLoading:
-                ScrollView {
-                    VStack(spacing: 0) {
-                        ForEach(0..<6, id: \.self){ _ in
-                            StockListItem(stock: nil, isLoading: true)
-                        }
+                VStack(spacing: 0) {
+                    ForEach(0..<6, id: \.self){ _ in
+                        StockListItem(stock: nil, isLoading: true)
                     }
                 }
             case let successState as DataStateSuccess<AnyObject>:
                 if let stocks = successState.stocks as? [DataStock] {
-                    ScrollView {
-                        VStack(spacing: 0) {
-                            ForEach(Array(stocks.enumerated()), id: \.element) { index, element in
-                                StockListItem(stock: element, isLoading: false)
-                                if (index < stocks.count - 1) {
-                                    Divider()
-                                        .padding(.horizontal, 15)
-                                }
+                    VStack(spacing: 0) {
+                        ForEach(Array(stocks.enumerated()), id: \.element) { index, element in
+                            StockListItem(stock: element, isLoading: false)
+                            if (index < stocks.count - 1) {
+                                Divider()
+                                    .padding(.horizontal, 15)
                             }
                         }
-                        .frame(height: 410)
-                        .padding(.horizontal, 10)
                     }
+                    .frame(height: 410)
+                    .padding(.horizontal, 10)
                 } else {
                     Text("Unexpected data format")
                 }
             case is DataStateUninitialized:
-                ScrollView {
-                    VStack(spacing: 0) {
-                        ForEach(0..<6, id: \.self){ _ in
-                            StockListItem(stock: nil, isLoading: true)
-                        }
+                VStack(spacing: 0) {
+                    ForEach(0..<6, id: \.self){ _ in
+                        StockListItem(stock: nil, isLoading: true)
                     }
                 }
             default:

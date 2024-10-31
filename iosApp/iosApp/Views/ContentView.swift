@@ -14,23 +14,26 @@ struct ContentView: View {
         NavigationStack{
             TabView(selection: $activeScreen) {
                 ForEach(screens.indices, id: \.self) { index in
-                    screens[index].screen.tabItem {
-                        Image(systemName: screens[index].iconSystemName)
+                    ScrollView{
+                        VStack(spacing: 0){
+                            ExpandableNavigationBar(screens[activeScreen].name)
+                            screens[index].screen
+                        }
+                        
+                    }
+                    .tabItem{
+                        Image(systemName:screens[index].iconSystemName)
                         Text(screens[index].name)
-                    }.tag(index)
-                }
-                .safeAreaInset(edge: .top){
-                    ExpandableNavigationBar("abc")
+                    }
+                    .tag(index)
                 }
             }
-            .toolbar(.hidden, for: .navigationBar)
         }
-        
     }
     
     @ViewBuilder
     func ExpandableNavigationBar(_ title:String) -> some View{
-        VStack(spacing: 10){
+        VStack{
             HStack{
                 Text(title).font(.largeTitle.bold())
                 Spacer()
@@ -41,13 +44,13 @@ struct ContentView: View {
                 TextField("Search stock, mutual funds etc", text:$searchText)
             }
             .padding(10)
-            .frame(height: 45)
             .background{
                 RoundedRectangle(cornerRadius: 20.0)
                     .fill(.bar)
             }
         }
         .padding(.top,25)
+        .safeAreaPadding(.horizontal,10)
         .padding(.bottom,10)
     }
 }

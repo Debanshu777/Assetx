@@ -19,18 +19,21 @@ struct StockScreen: View {
     @Namespace private var animation
     
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             DynamicTapNavigationOrganism(
                 activeTab: $activeTab,
                 onTapChangeCallback: {index in print(index)},
                 tabs: tabs.map{ $0.0 },
                 animation: animation
             )
-            TabView(selection: $activeTab){
+            TabView(selection: $activeTab) {
                 ForEach(tabs.indices, id: \.self) { index in
-                    tabs[index].1.tag(index)
+                        tabs[index].1
+                            .tag(index)
                 }
-            }.tabViewStyle(.page(indexDisplayMode: .never))
+            }
+            .frame(height: UIScreen.main.bounds.height)
+            .tabViewStyle(.page(indexDisplayMode: .never))
         }
     }
 }

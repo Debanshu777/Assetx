@@ -30,43 +30,40 @@ struct StockAssetView: View {
             if let assets = successState.stocks as? [DatabaseAssetEntity] {
                 let aggregator = calculateAggregator(assets: assets)
                 
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        // Aggregator View
-                        VStack(alignment: .leading, spacing: 10) {
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text("Current")
-                                        .font(.caption)
-                                    Text("₹\(aggregator.currentTotalValue, specifier: "%.2f")")
-                                        .bold()
-                                }
-                                Spacer()
-                                VStack(alignment: .trailing) {
-                                    Text("Total returns")
-                                        .font(.caption)
-                                    Text("+₹\(aggregator.currentTotalValue - aggregator.totalInvested, specifier: "%.2f") (\(aggregator.totalReturnsPercentage, specifier: "%.2f")%)")
-                                }
+                VStack(spacing: 0){
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Current")
+                                    .font(.caption)
+                                Text("₹\(aggregator.currentTotalValue, specifier: "%.2f")")
+                                    .bold()
                             }
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text("Invested")
-                                        .font(.caption)
-                                    Text("₹\(aggregator.totalInvested, specifier: "%.2f")")
-                                    
-                                }
-                                Spacer()
-                                VStack(alignment: .trailing) {
-                                    Text("1D returns")
-                                        .font(.caption)
-                                    // Placeholder for 1D returns; assuming a fixed value for example
-                                    Text("+₹2,331 (1.85%)")
-                                }
+                            Spacer()
+                            VStack(alignment: .trailing) {
+                                Text("Total returns")
+                                    .font(.caption)
+                                Text("+₹\(aggregator.currentTotalValue - aggregator.totalInvested, specifier: "%.2f") (\(aggregator.totalReturnsPercentage, specifier: "%.2f")%)")
                             }
                         }
-                        .padding()
-                        
-                        // Listing View
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Invested")
+                                    .font(.caption)
+                                Text("₹\(aggregator.totalInvested, specifier: "%.2f")")
+                                
+                            }
+                            Spacer()
+                            VStack(alignment: .trailing) {
+                                Text("1D returns")
+                                    .font(.caption)
+                                // Placeholder for 1D returns; assuming a fixed value for example
+                                Text("+₹2,331 (1.85%)")
+                            }
+                        }
+                    }
+                    .padding()
+                    ScrollView(.vertical){
                         VStack(spacing: 10) {
                             ForEach(assets, id: \.mappingId) { asset in
                                 HStack{
