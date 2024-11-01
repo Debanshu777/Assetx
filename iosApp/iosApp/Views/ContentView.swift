@@ -12,20 +12,17 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack{
-            TabView(selection: $activeScreen) {
-                ForEach(screens.indices, id: \.self) { index in
-                    ScrollView{
-                        VStack(spacing: 0){
-                            ExpandableNavigationBar(screens[activeScreen].name)
-                            screens[index].screen
-                        }
-                        
+            VStack{
+                ExpandableNavigationBar(screens[activeScreen].name)
+                TabView(selection: $activeScreen) {
+                    ForEach(screens.indices, id: \.self) { index in
+                        screens[index].screen
+                            .tabItem{
+                                Image(systemName:screens[index].iconSystemName)
+                                Text(screens[index].name)
+                            }
+                            .tag(index)
                     }
-                    .tabItem{
-                        Image(systemName:screens[index].iconSystemName)
-                        Text(screens[index].name)
-                    }
-                    .tag(index)
                 }
             }
         }

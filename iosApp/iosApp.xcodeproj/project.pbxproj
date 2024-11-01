@@ -22,6 +22,7 @@
 		D46072E42C5A8B6500A30328 /* SVGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46072E32C5A8B6500A30328 /* SVGImage.swift */; };
 		D46072E72C5A911800A30328 /* Precision.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46072E62C5A911800A30328 /* Precision.swift */; };
 		D4763CD42CCACB5500D6532C /* StockAssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4763CD32CCACB5500D6532C /* StockAssetView.swift */; };
+		D4E5D1292CD52804007AACF7 /* StockAssetAggregatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E5D1282CD527F6007AACF7 /* StockAssetAggregatorView.swift */; };
 		D4E689F42C6134DE00BCE792 /* PerformanceChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E689F32C6134DE00BCE792 /* PerformanceChart.swift */; };
 		D4E689F72C61508300BCE792 /* IndicesListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E689F62C61508300BCE792 /* IndicesListItem.swift */; };
 		D4E689F92C61647400BCE792 /* StockListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E689F82C61647400BCE792 /* StockListItem.swift */; };
@@ -49,6 +50,7 @@
 		D46072E32C5A8B6500A30328 /* SVGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImage.swift; sourceTree = "<group>"; };
 		D46072E62C5A911800A30328 /* Precision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Precision.swift; sourceTree = "<group>"; };
 		D4763CD32CCACB5500D6532C /* StockAssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAssetView.swift; sourceTree = "<group>"; };
+		D4E5D1282CD527F6007AACF7 /* StockAssetAggregatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAssetAggregatorView.swift; sourceTree = "<group>"; };
 		D4E689F32C6134DE00BCE792 /* PerformanceChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceChart.swift; sourceTree = "<group>"; };
 		D4E689F62C61508300BCE792 /* IndicesListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicesListItem.swift; sourceTree = "<group>"; };
 		D4E689F82C61647400BCE792 /* StockListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListItem.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		D45D6FA52C54E1A2002E63F3 /* organism */ = {
 			isa = PBXGroup;
 			children = (
+				D4E5D1282CD527F6007AACF7 /* StockAssetAggregatorView.swift */,
 				D4E689F32C6134DE00BCE792 /* PerformanceChart.swift */,
 				D4E689FA2C6164AC00BCE792 /* GridIndexView.swift */,
 				D4E689FC2C6164DD00BCE792 /* TodayStockView.swift */,
@@ -344,6 +347,7 @@
 				D43EC3F22C4A884100E8CE5A /* Tab.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				D4E689F92C61647400BCE792 /* StockListItem.swift in Sources */,
+				D4E5D1292CD52804007AACF7 /* StockAssetAggregatorView.swift in Sources */,
 				D4E689F72C61508300BCE792 /* IndicesListItem.swift in Sources */,
 				D43EC3EA2C4A749800E8CE5A /* StockExploreView.swift in Sources */,
 			);

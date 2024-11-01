@@ -14,14 +14,16 @@ struct PerformanceChart: View {
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 0) {
-                ForEach(0..<points.count-1, id: \.self) { index in
-                    ChartSegment(
-                        fromValue: points[index],
-                        toValue: points[index + 1],
-                        max: points.max() ?? 0,
-                        min: points.min() ?? 0,
-                        lineColor: points.last! > points.first! ? Color(hex: "19af55") : Color(hex: "d82f44")
-                    )
+                if(!points.isEmpty){
+                    ForEach(0..<points.count-1, id: \.self) { index in
+                        ChartSegment(
+                            fromValue: points[index],
+                            toValue: points[index + 1],
+                            max: points.max() ?? 0,
+                            min: points.min() ?? 0,
+                            lineColor: points.last! > points.first! ? Color(hex: "19af55") : Color(hex: "d82f44")
+                        )
+                    }
                 }
             }
         }

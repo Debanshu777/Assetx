@@ -14,7 +14,7 @@ struct StockListItem: View {
     let isLoading: Bool
     
     var body: some View {
-        HStack {
+        HStack(spacing: 5) {
             AsyncImage(url: stockImageURL(stock: stock, isLoading: isLoading)) { image in
                 image
                     .resizable()
@@ -24,15 +24,11 @@ struct StockListItem: View {
             }
             .frame(width: 40, height: 40)
             
-            Spacer().frame(width: 10)
-            
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(stockName(stock: stock, isLoading: isLoading))
                     .font(.callout)
                     .frame(maxWidth: 250, alignment: .leading)
                     .background(shimmer(isLoading))
-                
-                Spacer().frame(height: 5)
                 
                 Text(stockTicker(stock: stock, isLoading: isLoading))
                     .font(.caption)
@@ -43,21 +39,17 @@ struct StockListItem: View {
             
             Spacer()
             
-            VStack(alignment: .trailing) {
+            VStack(alignment: .trailing,spacing: 5) {
                 Text(stockPrice(stock: stock, isLoading: isLoading))
                     .frame(minWidth: 100, alignment: .trailing)
                     .background(shimmer(isLoading))
                 
-                Spacer().frame(height: 10)
-                
-                HStack {
+                HStack(spacing: 5) {
                     SVGImageView(url: URL(
                         string: (!isLoading) ? (stock != nil && stock!.change >= 0) ? "https://assets.tickertape.in/images/landing-page/52w_high.svg"
                         :"https://assets.tickertape.in/images/landing-page/52w_low.svg" : ""))
                     .frame(width: 15, height: 15)
                     .background(shimmer(isLoading))
-                    
-                    Spacer().frame(width: 5)
                     
                     Text(stockChange(stock: stock, isLoading: isLoading))
                         .foregroundColor(stock != nil && stock!.change >= 0 ? Color.green : Color.red)

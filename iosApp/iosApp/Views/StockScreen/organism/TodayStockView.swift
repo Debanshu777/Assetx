@@ -30,7 +30,6 @@ struct TodayStockView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 10)
             
-            Spacer().frame(height: 15)
             DynamicTapNavigationOrganism(
                 activeTab: $activeTab,
                 onTapChangeCallback: { index in

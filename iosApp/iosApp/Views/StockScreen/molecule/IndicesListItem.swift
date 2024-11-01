@@ -23,18 +23,20 @@ struct IndicesListItem: View {
                 .frame(width: 80, height: 80)
                 Spacer()
                 VStack(alignment: .trailing) {
-                    let lastPrice = (indices.points.last! as DataPoint).price
-                    let lastClose = Double(truncating:indices.lastClosePrice as NSNumber)
-                    
-                    
-                    Text("INR \(lastPrice.decimals(2))")
-                    HStack {
-                        SVGImageView(url: URL(
-                            string: (lastPrice - lastClose >= 0) ? "https://assets.tickertape.in/images/landing-page/52w_high.svg"
-                            :"https://assets.tickertape.in/images/landing-page/52w_low.svg"))
-                        .frame(width: 15, height: 15)
-                        Text("\(abs((lastPrice - lastClose)).decimals(2))%")
-                            .foregroundColor(lastPrice - lastClose >= 0 ? Color.green : Color.red)
+                    if(!indices.points.isEmpty){
+                        let lastPrice = (indices.points.last! as DataPoint).price
+                        let lastClose = Double(truncating:indices.lastClosePrice as NSNumber)
+                        
+                        
+                        Text("INR \(lastPrice.decimals(2))")
+                        HStack {
+                            SVGImageView(url: URL(
+                                string: (lastPrice - lastClose >= 0) ? "https://assets.tickertape.in/images/landing-page/52w_high.svg"
+                                :"https://assets.tickertape.in/images/landing-page/52w_low.svg"))
+                            .frame(width: 15, height: 15)
+                            Text("\(abs((lastPrice - lastClose)).decimals(2))%")
+                                .foregroundColor(lastPrice - lastClose >= 0 ? Color.green : Color.red)
+                        }
                     }
                     
                 }

@@ -17,7 +17,6 @@ struct GridIndexView: View{
                 .font(.system(size: 25, weight: .semibold))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 10)
-            Spacer().frame(height: 15)
             ScrollView(.horizontal){
                 LazyHGrid(
                     rows: [
